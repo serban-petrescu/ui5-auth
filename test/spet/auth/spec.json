@@ -1,0 +1,14 @@
+{
+	"roles": ["a", "b", "c"],
+	"actions": [{
+		"view": ":all",
+		"when": "present:a",
+		"selector": {
+			"type": "element-type",
+			"value": "sap.m.Text"
+		},
+		"action": {
+			"type": "remove"
+		}
+	}]
+}
