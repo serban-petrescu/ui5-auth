@@ -70,6 +70,13 @@ The whole goal of the library is to be non-invasive. As such, only the following
   spet.auth.registerComponent(this.getId(), oSpecification, aRoles);
   ```
 - All views which are loaded after this point will be automatically processed by the library. If a view or model is built or instantiated in a different manor (e.g. imperative instantiation of a fragment - which should be avoided) then the `spet.auth.processControlTree` method may be used.
+
+## Best Practices
+You can do a number of things to ensure that you don't run into problems:
+- Avoid imperative manipulation of properties that are changed by the library. For simple actions, changes are done only once during view preprocessing, so these changes might be irreversibly reverted by your controller code.
+- Favor declarative bindings such that all the bindings and templates exist when the preprocessing is done.
+- Favor declarative fragment instantiation (to avoid the point from above).
+
 ## Sample
 A small sample application can be found here: https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html.
 The authorization specification is located here: https://serban-petrescu.github.io/ui5-auth/sample/auth.json.
