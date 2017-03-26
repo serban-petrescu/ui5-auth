@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "7"
+before_script:
+  - npm install
+script: grunt
+cache:
+  directories:
+    - node_modules
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: pages
+  on:
+    branch: master
