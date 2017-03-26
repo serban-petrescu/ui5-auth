@@ -1,4 +1,4 @@
-# UI5 Authorization
+# UI5 Authorization [![Build Status](https://travis-ci.org/serban-petrescu/ui5-auth.svg?branch=master)](https://travis-ci.org/serban-petrescu/ui5-auth)
 ## Introduction
 Lightweight library which enables developers to build user interfaces which adapt at runtime to user roles. The main goal of this library is to decouple the responsibilities of regular UI5 applications: role-based adaptation should be done declaratively and centrally for each app. This ensures that any changes to the authorization schema of the application (or suite of applications) do not require changes throughout the views and fragments of the UI.
 
@@ -28,7 +28,7 @@ Note that the library is still *work in progress*. The following capabilities ar
   
 ## How can I use it?
 The whole goal of the library is to be non-invasive. As such, only the following things must be done such that you can use it:
-- Reference the library in your app. There are several blogs on SCN on how to use a custom library in a UI5 application.
+- Reference the library in your app. There are several blogs on SCN on how to use a custom library in a UI5 application. You can download the latest build of the library from [here](https://serban-petrescu.github.io/ui5-auth/latest.zip). 
 - Write a authorization specification `.json` file with the following structure:
   ```javascript
   {
@@ -77,7 +77,8 @@ You can do a number of things to ensure that you don't run into problems:
 - Favor declarative bindings such that all the bindings and templates exist when the preprocessing is done.
 - Favor declarative fragment instantiation (to avoid the point from above).
 
-## Sample
-A small sample application can be found here: https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html.
-The authorization specification is located here: https://serban-petrescu.github.io/ui5-auth/sample/auth.json.
-The role list is derived from the checkboxes in the top of the page. Make sure to press the "Refresh" button after changing the checkboxes.
+## Links
+- Sample: https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html. For the sample, the authorization specification is located here: https://serban-petrescu.github.io/ui5-auth/sample/auth.json. The role list is derived from the checkboxes in the top of the page. Make sure to press the "Refresh" button after changing the checkboxes.
+- JsDoc: https://serban-petrescu.github.io/ui5-auth/doc/index.html.
+- Test suite: https://serban-petrescu.github.io/ui5-auth/test/spet/auth/index.qunit.html?coverage.
+- Latest build: https://serban-petrescu.github.io/ui5-auth/latest.zip.
