@@ -15,7 +15,7 @@ sap.ui.define([
 	 * @property	{spet.auth.IAction} whenPresent	The action that 
 	 * shoudl be executed when the role is present.
 	 * @property	{spet.auth.IAction}	whenMissing	The action that 
-	 * shoudl be executed when the role is missing.
+	 * should be executed when the role is missing.
 	 */
 	return Control.extend("spet.auth.helper.BaseDynamicActionHelper", {
 		metadata: {
@@ -47,10 +47,12 @@ sap.ui.define([
 
 		/**
 		 * Called when the role is updated.
+		 * @name spet.auth.helper.BaseDynamicActionHelper#updateRole
 		 * @param	{integer}	iCounter	The request counter
 		 * at the moment when the role update was received. This 
 		 * is used to ensure that interleaving promises do not
 		 * cause unexpected behavior.
+		 * @returns {void}
 		 */
 		updateRole: function(iCounter, bRole) {
 			if (iCounter === this._counter) {
@@ -61,6 +63,8 @@ sap.ui.define([
 		
 		/**
 		 * Re-applies the actions to the control tree.
+		 * @name spet.auth.helper.BaseDynamicActionHelper#refresh
+		 * @returns {void}
 		 */
 		refresh: function() {
 			var oAction = null,

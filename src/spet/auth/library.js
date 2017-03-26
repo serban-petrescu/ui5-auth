@@ -72,7 +72,37 @@ ParentDynamicAction) {
 			return new ParentDynamicAction(mSettings);
 		}
 	});
-
+	
+	
+	/**
+	 * Authorization adaptation action classes.
+	 * Action classes are used to modify controls of the control tree.
+	 *
+	 * @namespace
+	 * @name spet.auth.action
+	 * @author Serban Petrescu
+	 * @public
+	 */
+	 
+	/**
+	 * Authorization adaptation selector classes.
+	 * Action classes are used to filter controls of the control tree.
+	 *
+	 * @namespace
+	 * @name spet.auth.selector
+	 * @author Serban Petrescu
+	 * @public
+	 */
+	 
+	/**
+	 * Authorization adaptation helper classes and controls.
+	 *
+	 * @namespace
+	 * @name spet.auth.helper
+	 * @author Serban Petrescu
+	 * @public
+	 */
+	
 	/**
 	 * Interface which must be implemented by classes used to select UI5 controls
 	 * during control tree interation.

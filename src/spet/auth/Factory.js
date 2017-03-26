@@ -31,8 +31,7 @@ sap.ui.define([
 		 * Creates a new selector based on the type and settings.
 		 * @function
 		 * @name spet.auth.Factory#createSelector
-		 * @returns {spet.auth.ISelector|null} A selector or null
-		 * if no provider is registered for the given type.
+		 * @returns {spet.auth.ISelector|null} A selector or null if no provider is registered for the given type.
 		 */
 		this.createSelector = function(sType, mSettings){
 			if (mSelectorPoviders.hasOwnProperty(sType)) {
@@ -61,8 +60,7 @@ sap.ui.define([
 		 * Creates a new action based on the type and settings.
 		 * @function
 		 * @name spet.auth.Factory#createAction
-		 * @returns {spet.auth.iAction|null} An action or null
-		 * if no provider is registered for the given type.
+		 * @returns {spet.auth.IAction|null} An action or null if no provider is registered for the given type.
 		 */
 		this.createAction = function(sType, mSettings){
 			if (mActionProviders.hasOwnProperty(sType)) {
