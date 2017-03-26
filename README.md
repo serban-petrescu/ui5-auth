@@ -78,7 +78,7 @@ You can do a number of things to ensure that you don't run into problems:
 - Favor declarative fragment instantiation (to avoid the point from above).
 
 ## Links
-- Sample: https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html. For the sample, the authorization specification is located here: https://serban-petrescu.github.io/ui5-auth/sample/auth.json. The role list is derived from the checkboxes in the top of the page. Make sure to press the "Refresh" button after changing the checkboxes.
-- JsDoc: https://serban-petrescu.github.io/ui5-auth/doc/index.html.
-- Test suite: https://serban-petrescu.github.io/ui5-auth/test/spet/auth/index.qunit.html?coverage.
-- Latest build: https://serban-petrescu.github.io/ui5-auth/latest.zip.
+- Sample: [wrapper.html](https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html). For the sample, the authorization specification is located here: [auth.json](https://serban-petrescu.github.io/ui5-auth/sample/auth.json). The role list is derived from the checkboxes in the top of the page. Make sure to press the "Refresh" button after changing the checkboxes.
+- JsDoc: [index.html](https://serban-petrescu.github.io/ui5-auth/doc/index.html)
+- Test suite: [index.qunit.html?coverage](https://serban-petrescu.github.io/ui5-auth/test/spet/auth/index.qunit.html?coverage).
+- Latest build: [latest.zip](https://serban-petrescu.github.io/ui5-auth/latest.zip).
