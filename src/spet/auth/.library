@@ -2,6 +2,7 @@
 <library xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>spet.auth</name>
+  <version>@@version</version>
 
   <documentation>Utility library for haindling user-authorization-dependent UI adaptation.</documentation>
 

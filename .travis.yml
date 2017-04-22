@@ -1,16 +1,23 @@
 language: node_js
 node_js:
-  - "7"
+- '7'
 before_script:
-  - npm install
+- npm install
 script: grunt
 cache:
   directories:
-    - node_modules
+  - node_modules
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: pages
-  on:
-    branch: master
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: aFba+9bLJznjy2V1mGW040kmj+LqM8S68vdlD4U5IPK/hK1nCP6M4rXfycSlW6UohWirzqLduGgoRg6FIb4+kW7OWPeGM90IggbzBwJL+/E/hnqtrZa8cHedhZvKUEEIcVunLx9t7f9P0IN4lVLi0gcqaqaJIpG4sH7yoSs1RkKikhCBM7fHUXF4h3lXXmHCJu2JHMksrj1fvrRAvy3svQDyh9MoGCPnmB0SdnuQPyq9c7hom9M7TwRpNAVGWhYhiIF9sd6JcQHEA0Nka0QNXOl8uH4ivuZIjomgBhMC1rwmUN9rJl5sLuM1wELr8o4MWvnGtRpvewgP9dKMz1+CO9BeCwSA9rK+O9iOXekcZEGhD5Ck7J5FPEHO20VjOjOpsVnsWb8PpmImZzPLcEMkjGwRt4bXXnXOzSfG3Mw1Y6KT3DPOvM1X8/ISgSWq9wxT5ox3JEZOMcEIVIq/pE/NTjO9EfAhtU1JBkYY+wBfiAAANlB0P/ETAN5Vj9wYLyLSBjD97Xs9u14mai0BA6ywx8Ox7b7QuLs0jV0Wr8+9fDp+xctUaxgYMcobImaOM6AA61rDQHew3wnQCa1cAVQZt+5jutIbuWQq5rvxX79eCu/Wb6K/VntMh3/tKC8nwfyxvMENlmX/Gx5DiUa7VS6Ges+hj0tEUzOcO6SemZOHij0=
+    file: pages/latest.zip
+    on:
+      tags: true
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: pages
+    on:
+      branch: master

@@ -82,3 +82,5 @@ You can do a number of things to ensure that you don't run into problems:
 - JsDoc: [index.html](https://serban-petrescu.github.io/ui5-auth/doc/index.html)
 - Test suite: [index.qunit.html?coverage](https://serban-petrescu.github.io/ui5-auth/test/spet/auth/index.qunit.html?coverage).
 - Latest build: [latest.zip](https://serban-petrescu.github.io/ui5-auth/latest.zip).
+
+For a specific version of this library, check the [releases section](https://github.com/serban-petrescu/ui5-auth/releases).

@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	var oPackage = grunt.file.readJSON('package.json');
 	grunt.file.write("conf.json", JSON.stringify({
 	  "tags": {
 		"allowUnknownTags": true
@@ -13,7 +14,7 @@ module.exports = function(grunt) {
 		"outputSourcePath": true,
 		"systemName": "UI5 Authorization",
 		"footer": "",
-		"copyright": "Copyright © 2017 Serban Petrescu",
+		"copyright": "Copyright ï¿½ 2017 Serban Petrescu",
 		"navType": "vertical",
 		"theme": "lumen",
 		"linenums": true,
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
 	  }
 	}));	
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: oPackage,
 		openui5_preload: {
 			json: {
 				options: {
@@ -67,6 +68,9 @@ module.exports = function(grunt) {
 					rename: function(dest, src) {
 						return dest + src.replace('.js','-dbg.js');
 					}
+				}, {
+					src: "src/spet/auth/.library",
+					dest: "dist/spet/auth/.library"
 				}]
 			},
 			pages: {
@@ -130,6 +134,27 @@ module.exports = function(grunt) {
 					dest: 'LICENSE',
 				}]
 			}
+		},
+		replace: {
+			dist: {
+				options: {
+					patterns: [{
+						match: 'version',
+						replacement: oPackage.version
+					}]
+				},
+				files: [{
+					expand: true,
+					dot: true,
+					src: "dist/**",
+					dest: "./"
+				},{
+					expand: true,
+					dot: true,
+					src: "pages/doc/**",
+					dest: "./"
+				}]
+			}
 		}
 	});
 	
@@ -140,5 +165,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-openui5');
-	grunt.registerTask('default', ['openui5_preload', 'uglify', 'copy:dist', 'jsdoc', 'connect', 'qunit', 'copy:pages', 'compress']);
+	grunt.loadNpmTasks('grunt-replace');
+	grunt.registerTask('default', ['openui5_preload', 'uglify', 'copy:dist', 'jsdoc', 'connect', 'qunit', 
+		'copy:pages', 'replace', 'compress']);
 };

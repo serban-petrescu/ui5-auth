@@ -11,3 +11,9 @@ UIAdaptation_index.html
 changes_preview.js
 /.user.project.json
 /neo-app.json
+/.vscode/
+/target
+/dist
+/pages
+/node_modules
+/conf.json

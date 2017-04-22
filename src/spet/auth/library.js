@@ -34,9 +34,11 @@ ParentDynamicAction) {
 	 * @name spet.auth
 	 * @author Serban Petrescu
 	 * @public
+	 * @version @@version
 	 */
 	sap.ui.getCore().initLibrary({
 		name : "spet.auth",
+		version: "@@version",
 		dependencies : ["sap.ui.core"],
 		types: [],
 		interfaces: [
