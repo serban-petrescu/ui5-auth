@@ -21,3 +21,6 @@ deploy:
     local_dir: pages
     on:
       branch: master
+after_success:
+  - chmod a+x ./publish.sh
+  - ./publish.sh
