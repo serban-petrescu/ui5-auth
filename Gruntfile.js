@@ -92,6 +92,11 @@ module.exports = function(grunt) {
 				},{
 					src: 'LICENSE',
 					dest: 'pages/LICENSE',
+				},{
+					expand: true,
+					cwd: 'docs',
+					src: '**/*',
+					dest: 'pages/docs/',
 				}]
 			}
 		},
