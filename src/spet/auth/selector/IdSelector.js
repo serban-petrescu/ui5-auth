@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/base/Object"],function(t){return t.extend("spet.auth.selector.IdSelector",{metadata:{interfaces:["spet.auth.ISelector"]},_sId:"",constructor:function(t){this._sId=t.value},check:function(t,e){return e.getId&&t.createId(this._sId)===e.getId()}})},!1);

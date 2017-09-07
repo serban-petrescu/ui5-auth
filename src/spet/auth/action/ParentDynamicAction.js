@@ -1,0 +1,1 @@
+sap.ui.define(["./BaseDynamicAction","spet/auth/Factory","spet/auth/helper/ParentDynamicActionHelper"],function(t,e,r){return t.extend("spet.auth.action.ParentDynamicAction",{process:function(t,e){var a=new r({role:this._oValue,whenMissing:this._oWhenMissing,whenPresent:this._oWhenPresent,view:t});a.setView(t),this._aHelperInfos.push({helper:a,control:e})}})},!1);

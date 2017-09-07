@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>UI5-AUTH</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/msg.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="assets/xcode.css">
+        
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<img src="assets/logo.png" class="logo"/>
+		<div class="footnote">msg | October 2017 | SAP Conference 2017</div>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>UI5-Auth</h1>
+					<p>
+						<small>by <a href="https://serban-petrescu.github.io">Serban Petrescu</a></small>
+					</p>
+				</section>
+				<section>
+					<h3>Contents</h3>
+					<ul>
+						<li>The <strong>"</strong>problem<strong>"</strong></li>
+					    <li>A naive way</li>
+					    <li>A better way</li>
+					    <li>The library</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h2>The Problem</h2>
+					</section>
+					<section>
+						<p>Fiori applications should be role-based, <strong>but...</strong></p>
+					</section>
+					<section>
+						<p>Sometimes we need role <strong>flavours</strong>...</p>
+					</section>
+					<section>
+						<p>Sometimes we need <strong>context-dependent</strong> roles...</p>
+					</section>
+					<section>
+						<p>Sometimes we just need the same app to <strong>adapt</strong> to the user roles...</p>
+					</section>
+					<section>
+						<p>
+							In the end, we need the UI to also check the user roles or privileges. 
+							This should <strong>NOT</strong> replace proper authority checks in the backend.
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>A naive way</h2>
+					</section>
+					<section>
+						<p>
+							Simply treat the roles as any other type of data.
+						</p>
+						<p>
+							Read it from the backend (e.g. via a REST service).
+						</p>
+						<p>
+							Store it in a JSON or XML model.
+						</p>
+						<p>
+							Use the model to bind properties from the views.
+						</p>
+					</section>
+					<section>
+						<h3>Disadvantages</h3>
+						<ul>
+							<li>Frontend and backend are coupled through the roles.</li>
+							<li>All the views are polluted with the roles.</li>
+							<li>Hard for developers to see what is affected by each role.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>An example from SAP</h3>
+						<p>
+							We'll shortly look into an example from SAP: the SAP HANA XS Admin user interface.
+						</p>
+						<p>
+							In a nutshell, it uses this exact principle: a REST API for getting the roles, 
+							a JSON model for storing them and bindings to this model for adapting the UI.
+						</p>
+					</section>
+					<section>
+						<p>
+							This is what the REST API produces (and what is stored in the model):
+						</p>
+						<img src="assets/xs-admin-service.PNG" />
+					</section>
+					<section>
+						<p>
+							And this is how they use it inside views:
+						</p>
+						<img src="assets/xs-admin-view.PNG" />
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>A better way</h2>
+					</section>
+					<section>
+						<h3>App <strong>owned</strong> roles</h3>
+						<p>
+							The UI should have its own roles. 
+						</p>
+						<p>
+							It should only work with its own roles and it should not "know" of any other roles.
+						</p>
+					</section>
+					<section>
+						<h3>Role <strong>adapters</strong></h3>
+						<p>
+							The backend roles should be mapped into UI roles.
+						</p>
+						<p>
+							This should be done through one or more adapters (deployed in the UI or in the backend, but logically separate from both). 
+						</p>
+						<p>
+							Each adapter should have the <strong>single responsability</strong> of doing this mapping.</p>
+						</p>
+					</section>
+					<section>
+						<h3>Non-polluting changes</h3>
+						<p>
+							The logic for adapting the UI to the roles should not pollute the application code. 
+							It should be held <strong>centrally</strong>, in a separate file or package.
+						</p>
+						<p>
+							This logic should be built-up declaratively.
+						</p>
+					</section>
+					<section>
+						<h3>Advantages</h3>
+						<ul>
+							<li>Frontend and backend are decoupled.</li>
+							<li>It is a lot simpler to change the roles afterwards.</li>
+							<li>More transparent to developers.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>The library</h2>
+					</section>
+					<section>
+						<p>
+							The <a href="https://github.com/serban-petrescu/ui5-auth">ui5-auth</a> library can be used to declaratively  define (via a json file) the app roles and adapt the UI based on them.
+						</p>
+						<small>
+							<p>
+								Adapters currently have be implemented <strong>by the developer</strong>. <br/>
+								Future versions of the library might contain common adapter implementations.
+							</p>
+						</small>
+					</section>
+					<section>
+						<h3>Role declarations</h3>
+						<p>
+							Can be done with a simple array of strings:
+						</p>
+<pre><code>
+	"roles": ["A", "B", "C"]
+	
+</code></pre>
+					</section>
+					<section>
+						<h3>Role relationships</h3>
+						<p>
+							Either implications or expressions can be used to compute assigned roles based on other roles:
+						</p>
+<pre><code>
+	"implications": {
+		"A": ["B"] // A implies B
+	},
+	"expressions": {
+		"C": "{= ${A} && ${B} }" // C = A && B
+	}
+
+</code></pre>
+					</section>
+					<section>
+						<h3>Actions</h3>
+						<p>
+							Actions can be used to adapt the UI based on the role values. Each action should define:
+							<ul>
+								<li>when it should be applied</li>
+								<li>what controls it should affect</li>
+								<li>what should be done to the controls</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h3>Action Example</h3>
+<pre><code>
+{
+	"when": "missing:A",
+	"views": ":all",
+	"selector": {
+		"type": "id",
+		"value": "btnSmth" 
+	},
+	"action": {
+		"type": "remove"
+	}
+}
+
+</code></pre>
+					</section>
+					<section>
+						<a href="https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html" target="_blank">
+							<h2><strong>DEMO</strong></h2>
+						</a>
+					</section>
+					<section>
+						<h3>Outlook</h3>
+						<p>Create adapters for the most common scenarios (e.g. OData adapter).</p>
+						<p>Design a more fluent DSL for specifying the roles and actions.</p>
+					</section>
+				</section>
+				<section>
+					<h1><strong>The end</strong></h1>
+					<h4>Thank you for your attention.</h4>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				mouseWheel: true,
+				slideNumber: true,
+				transition: 'slide',
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

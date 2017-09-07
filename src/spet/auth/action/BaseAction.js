@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/base/Object"],function(t){return t.extend("spet.auth.action.BaseAction",{metadata:{interfaces:["spet.auth.IAction"]},initialize:function(){},process:function(){},finalize:function(){}})},!1);

@@ -1,0 +1,1 @@
+sap.ui.define(["./BaseDynamicActionHelper"],function(t){return t.extend("spet.auth.helper.AssociationDynamicActionHelper",{metadata:{associations:{elements:{type:"sap.ui.core.Element",multiple:!0}}},getSelectedElements:function(){return(this.getElements()||[]).map(function(t){return sap.ui.getCore().byId(t)})}})},!1);

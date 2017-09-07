@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html style="height:100%">
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title>Sample</title>
+
+		<script id="sap-ui-bootstrap"
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge">
+		</script>
+
+		<script id="main" type="sapui5/xmlview">
+	        <mvc:View height="100%"
+	        	xmlns:mvc="sap.ui.core.mvc"
+	        	xmlns:core="sap.ui.core"
+	        	xmlns:layout="sap.ui.layout"
+	        	xmlns:html="http://www.w3.org/1999/xhtml"
+	        	xmlns="sap.m" >
+	        	<layout:FixFlex>
+	        		<layout:fixContent>
+	        			<layout:HorizontalLayout allowWrapping="true">
+	        				<CheckBox id="chbGod" text="God "/>
+	        				<CheckBox id="chbUpload" text="Upload Document "/>
+	        				<CheckBox id="chbResove" text="Resolve "/>
+	        				<CheckBox id="chbSolution" text="View Solution "/>
+	        				<CheckBox id="chbAdvanced" text="View Advanced " />
+	        				<Button text=" Refresh " press="onRefresh" type="Transparent" />
+	        			</layout:HorizontalLayout>
+	        		</layout:fixContent>
+	        		<layout:flexContent>
+	        			<html:iframe id="iframe" src="index.html" 
+	        				scrolling="no" style="width:100%;height:100%;overflow:hidden" />
+	        		</layout:flexContent>
+	        	</layout:FixFlex>
+	        </mvc:View>    
+	    </script>
+	</head>
+
+	<body class="sapUiBody" style="height:100%">
+		
+		<div  id="content" style="height:100%;overflow:hidden">
+		</div>
+	    
+	    <script>
+	        sap.ui.require(["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/ui/model/odata/v2/ODataModel",
+	            "sap/ui/model/json/JSONModel", "sap/ui/Device"], 
+	            function(Controller, MessageToast, ODataModel, JSONModel, Device){
+	                
+	                /**
+	                 * Annonymous controller for the view.
+	                 * @class
+	                 */
+	                var fnController = Controller.extend("AnnonymousController", {
+	                    onRefresh: function() {
+	                    	var aRoles = [];
+	                    	if (this.byId("chbGod").getSelected()) aRoles.push("god");
+	                    	if (this.byId("chbUpload").getSelected()) aRoles.push("upload-document");
+	                    	if (this.byId("chbResove").getSelected()) aRoles.push("resolve");
+	                    	if (this.byId("chbSolution").getSelected()) aRoles.push("view-solution");
+	                    	if (this.byId("chbAdvanced").getSelected()) aRoles.push("view-advanced");
+	                    	jQuery("#main--iframe").attr("src", "index.html?roles=" + aRoles.join(","));
+	                    	sap.ui.core.BusyIndicator.show(0);
+	                    }
+	                });
+	                
+	                sap.ui.xmlview("main", {
+	                    viewContent:    jQuery("#main").html(),
+	                    controller:     new fnController()
+	                }).placeAt("content");
+	            }
+	        );
+	    </script>
+	</body>
+
+</html>

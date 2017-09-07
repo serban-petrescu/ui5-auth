@@ -1,0 +1,10 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Panel>
+		<HBox id="box1">
+			<Text />
+		</HBox>
+		<VBox id="box2">
+			<Text />
+		</VBox>
+	</Panel>
+</mvc:View>

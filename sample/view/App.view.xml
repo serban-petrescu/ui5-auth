@@ -1,0 +1,82 @@
+<mvc:View controllerName="spet.auth.sample.controller.App" xmlns:core="sap.ui.core" 
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<App><Page title="Complaint List" enableScrolling="false">
+		<SplitContainer id="splitContainer" initialDetail="notFound" initialMaster="master" >
+			<masterPages>
+				<Page title="Complaints" id="master" class="sapUiStdPage" showFooter="true"
+					showNavButton="{device>/system/phone}" navButtonPress="goBack"> 
+					<subHeader><Toolbar><SearchField width="100%" liveChange="onSearch" /></Toolbar></subHeader>
+					<List items="{/Complaints}" id="lstMaster">
+						<ObjectListItem icon="sap-icon://person-placeholder" type="Navigation" title="{Title}" intro="{Customer}"
+							press="onItemPressed">
+							<attributes><ObjectAttribute title="On" text="{Date}" /></attributes>
+							<firstStatus><ObjectStatus text="{= ${Resolved} ? 'Resolved' : 'Unresolved' }" 
+							state="{= ${Resolved} ? 'Success' : 'Error' }" /></firstStatus>
+						</ObjectListItem>
+					</List>
+					<footer>
+						<Toolbar />
+					</footer>
+				</Page>
+			</masterPages>
+			<detailPages>
+				<MessagePage title="Not Found" text="Not Found" id="notFound" showNavButton="{device>/system/phone}"
+					navButtonPress="goToMaster"/>
+				<Page title="Complaint: {Number}" id="detail" showFooter="true" showNavButton="{device>/system/phone}"
+					navButtonPress="goToMaster">
+					<ObjectHeader xmlns="sap.m" title="{Title}"  intro="From {Customer}" icon="sap-icon://person-placeholder">
+						<firstStatus><ObjectStatus text="{= ${Resolved} ? 'Resolved' : 'Unresolved' }" 
+							state="{= ${Resolved} ? 'Success' : 'Error' }" /></firstStatus>
+						<attributes><ObjectAttribute title="Complaint" text="{Number}"/></attributes>
+					</ObjectHeader>
+					<IconTabBar expandable="false" expanded="true"><items>
+						<IconTabFilter icon="sap-icon://hint" text="Details">
+							<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+								emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+								<f:content>
+									<Label text="Title" />
+									<Text text="{Title}" />
+									<Label text="Customer" cd:section="advanced" />
+									<Text text="{Customer}"  cd:section="advanced" />
+									<Label text="Incident date" />
+									<Text text="{Date}" />
+									<Label text="Ticket" />
+									<Text text="{Ticket}" />
+									<Label text="Responsable User" cd:section="advanced" />
+									<Text text="{User}" cd:section="advanced" />
+									<Label text="Description" />
+									<Text text="{Body}" wrapping="true"/>
+								</f:content>
+							</f:SimpleForm>
+						</IconTabFilter> 
+						<IconTabFilter id="itfDocuments" icon="sap-icon://documents" text="Attachments" count="{AttachmentCount}">
+							<UploadCollection items="{Attachments}" uploadEnabled="true">
+								<items>
+									<UploadCollectionItem fileName="{Name}" visibleDelete="false" visibleEdit="false" />
+								</items>
+							</UploadCollection>
+						</IconTabFilter>
+						<IconTabFilter id="itfSolution" icon="sap-icon://complete" text="Solution" visible="{Resolved}">
+							<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+								emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+								<f:content>
+									<Label text="Manager" />
+									<Text text="{/Manager/FirstName} {/Manager/LastName}" />
+									<Label text="Response" />
+									<Text text="{Reply}" wrapping="true" />
+								</f:content>
+							</f:SimpleForm>
+						</IconTabFilter>
+					</items></IconTabBar>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Button id="btnResolve" text="Resolve" press="onSubmitDialog"/>
+					</Toolbar>
+				</footer>
+				</Page>
+			</detailPages>
+		</SplitContainer>
+    </Page></App>
+</mvc:View>

@@ -1,0 +1,134 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 40px;
+$mainFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$headingFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: rgb(132,20,57);
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: rgb(63,63,63);
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+div.footnote {
+	color: rgb(193,193,193);
+	font-size: 10px;
+	font-family: $mainFont;
+	bottom: 1em;
+	left: 1em;
+	position: absolute;
+}
+
+.reveal strong,
+.reveal b {
+	color: rgb(132,20,57);
+}
+
+img.logo {
+	position: absolute;
+	top: 1.5em;
+	right: 2em;
+	display: block;
+	max-height: 6em;
+	max-width: 6em;
+	width: auto;
+	height: auto;
+}
+
+.reveal ul {
+    list-style: none;
+	list-style-type: none;
+    padding-left: 0;
+	margin-left: 0;
+}
+
+.reveal ul > li {  
+	padding-left: 1em;
+}
+
+.reveal ul > li:before {
+    content: "•";
+	color: rgb(132,20,57);
+	margin-right: 0.5em;
+}
+
+.reveal ul ul {
+    list-style: none;
+	list-style-type: none;
+    padding-left: 0;
+	font-size: 80%;
+	margin-left: 1em;
+}
+
+.reveal ul ul > li {
+	padding-left: 1em;
+}
+
+.reveal ul ul > li:before {
+    content: "-";
+	color: rgb(132,20,57);
+	margin-right: 0.5em;
+}
+
+.reveal ol { 
+	counter-reset: section; 
+	margin-left: 0;
+}
+
+.reveal ol li { 
+	display: block; 
+}
+
+.reveal ol li:before {
+	content: counter(section) ".";
+	counter-increment: section;
+	color: rgb(132,20,57);
+	margin-right: 0.5em;
+}
+
+.reveal ol ol { 
+	counter-reset: section; 
+	font-size: 80%;
+	margin-left: 1em;
+}
+
+.reveal ol ol li { 
+	display: block; 
+}
+
+.reveal ol ol li:before {
+	content: counter(section, lower-alpha) ".";
+	counter-increment: section;
+	color: rgb(132,20,57);
+	margin-right: 0.5em;
+}
+
+.reveal blockquote {
+	text-align: left;
+}

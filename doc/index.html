@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>UI5 Authorization Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.lumen.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">UI5 Authorization</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="spet.auth.html">spet.auth</a></li><li><a href="spet.auth.action.html">spet.auth.action</a></li><li><a href="spet.auth.helper.html">spet.auth.helper</a></li><li><a href="spet.auth.selector.html">spet.auth.selector</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="spet.auth.action.AssociationDynamicAction.html">spet.auth.action.AssociationDynamicAction</a></li><li><a href="spet.auth.action.BaseAction.html">spet.auth.action.BaseAction</a></li><li><a href="spet.auth.action.BaseDynamicAction.html">spet.auth.action.BaseDynamicAction</a></li><li><a href="spet.auth.action.BindPropertyAction.html">spet.auth.action.BindPropertyAction</a></li><li><a href="spet.auth.action.ParentDynamicAction.html">spet.auth.action.ParentDynamicAction</a></li><li><a href="spet.auth.action.RemoveAction.html">spet.auth.action.RemoveAction</a></li><li><a href="spet.auth.action.SetPropertyAction.html">spet.auth.action.SetPropertyAction</a></li><li><a href="spet.auth.ControlIterator.html">spet.auth.ControlIterator</a></li><li><a href="spet.auth.Factory.html">spet.auth.Factory</a></li><li><a href="spet.auth.helper.AssociationDynamicActionHelper.html">spet.auth.helper.AssociationDynamicActionHelper</a></li><li><a href="spet.auth.helper.BaseDynamicActionHelper.html">spet.auth.helper.BaseDynamicActionHelper</a></li><li><a href="spet.auth.helper.ParentDynamicActionHelper.html">spet.auth.helper.ParentDynamicActionHelper</a></li><li><a href="spet.auth.selector.CustomDataSelector.html">spet.auth.selector.CustomDataSelector</a></li><li><a href="spet.auth.selector.ElementTypeSelector.html">spet.auth.selector.ElementTypeSelector</a></li><li><a href="spet.auth.selector.ExpressionHelper.html">spet.auth.selector.ExpressionHelper</a></li><li><a href="spet.auth.selector.IdSelector.html">spet.auth.selector.IdSelector</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="interfaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Interfaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="spet.auth.IAction.html">spet.auth.IAction</a></li><li><a href="spet.auth.ISelector.html">spet.auth.ISelector</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>UI5 Authorization <a href="https://travis-ci.org/serban-petrescu/ui5-auth"><img src="https://travis-ci.org/serban-petrescu/ui5-auth.svg?branch=master" alt="Build Status"></a> <a href="https://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.svg" alt="Built with Grunt"></a> <a href="https://github.com/serban-petrescu/ui5-auth/releases"><img src="https://img.shields.io/github/release/serban-petrescu/ui5-auth.svg" alt="GitHub Release"></a> <a href="https://github.com/serban-petrescu/ui5-auth/blob/master/LICENSE"><img src="https://img.shields.io/github/license/serban-petrescu/ui5-auth.svg" alt="License"></a></h1><h2>Introduction</h2><p>Lightweight library which enables developers to build user interfaces which adapt at runtime to user roles. The main goal of this library is to decouple the responsibilities of regular UI5 applications: role-based adaptation should be done declaratively and centrally for each app. This ensures that any changes to the authorization schema of the application (or suite of applications) do not require changes throughout the views and fragments of the UI.</p>
+<h2>Prerequisites</h2><p>To be able to use this library, the apps must adhere to the following constraints (derived from the design assumptions of the library):</p>
+<ol>
+<li><strong>All views and fragments should be XML-based.</strong> The library uses <a href="https://openui5.hana.ondemand.com/#docs/guide/48b81b967af34ad08f1f88c962b4740a.html">XML View Preprocessing</a> to modify the control tree. This is a hard constraint, so a complete remake of the library would be needed to be able to use it with other types of views.</li>
+<li><strong>All views should be loaded asynchronously.</strong> The XML preprocessing is done asynchronously, because the authorization specification and the user roles <em>may</em> be loaded asynchronously. If synchronous loading is needed, then the library can be easily adjusted (by a third party) to process the views synchronously (a prerequisite would be to load the spec and user roles synchronously).</li>
+</ol>
+<h2>Current Features</h2><p>Note that the library is still <em>work in progress</em>. The following capabilities are supported:</p>
+<ul>
+<li>Role inference: a role may imply a set of other roles (e.g. Admin implies that you have all other roles). </li>
+<li>Role-based expressions: a role may be calculated from other roles (via UI5 <a href="https://openui5.hana.ondemand.com/#docs/guide/91f0652b6f4d1014b6dd926db0e91070.html">property binding</a> syntax: simple, complex or expression-based).</li>
+<li>Selectors (classes which select controls based on some logic):<ul>
+<li>ID-based</li>
+<li>Custom-data-based</li>
+<li>Property-value-based</li>
+<li>Element-type-based</li>
+</ul>
+</li>
+<li>Actions (performed on the selected controls):<ul>
+<li>Remove</li>
+<li>Hide / Show</li>
+<li>Disable / Enable</li>
+<li>Set the value of a property</li>
+<li>Bind a property</li>
+<li>Dynamic: perform other actions based on a boolean value that may change during the application execution. This boolean value may be statically specified or bound using UI5 property binding. The binding can use either properties relative to the binding context of the target control or properties relative to the binding context of another control (specified by ID). The value itself may be resolved synchronously (e.g. via a simple expression binding) or asynchronously (by returning a deferred object; this allow applications to perform a backend request to determine if the user has the necessary roles). </li>
+</ul>
+</li>
+<li>Extendable: custom selectors or actions can be added by the target applications.</li>
+</ul>
+<h2>How can I use it?</h2><p>The whole goal of the library is to be non-invasive. As such, only the following things must be done such that you can use it:</p>
+<ul>
+<li>Reference the library in your app. There are several blogs on SCN on how to use a custom library in a UI5 application. You can download the latest build of the library from <a href="https://serban-petrescu.github.io/ui5-auth/latest.zip">here</a>. </li>
+<li><p>Write a authorization specification <code>.json</code> file with the following structure:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+  &quot;roles&quot;: [&quot;A&quot;, &quot;B&quot;, &quot;C&quot; /* string array of all possible roles. */ ],
+  &quot;implications&quot;: { /* optional map between role name and implies roles */
+    &quot;A&quot;: [&quot;B&quot;] // A implies B
+  },
+  &quot;expressions&quot;: { /* optional map between role name and calculation expression */
+    &quot;C&quot;: &quot;{= ${A} && ${B} }&quot; // C = A && B
+  },
+  &quot;actions&quot;: [{ /* array of actions which should be performed */
+    &quot;when&quot;: &quot;missing:A&quot;, // criteria specifying when the action should be executed
+                         // it can in one of the following forms: 'missing:{role}', 
+                         // 'present:{role}' or ':always'
+
+    &quot;views&quot;: &quot;:all&quot;,     // optional comma separated view name list. If it is not
+                         // specified, then it is applied to all the views. The
+                         // special identifier &quot;:all&quot; may also be used (same effect)
+
+    &quot;selector&quot;: {        // mandatory selector specification
+      &quot;type&quot;: &quot;id&quot;,      // mandatory selector type
+      // selector specific properties (0 or more)
+      &quot;value&quot;: &quot;btnSmth&quot; 
+    },
+
+    &quot;action&quot;: {          // mandatory action specification
+      &quot;type&quot;: &quot;remove&quot;,  // mandatory action type
+      // action specific properties (0 or more)
+    }
+  }] 
+}</code></pre></li>
+<li>Obtain the current user's role list. This is application specific (in the future, some predefined adapters may also be added to the library). The roles should be passed to the library as an array of strings (role names).</li>
+<li>Register the current component, with the authorization specification and role list, to the library:<pre class="prettyprint source lang-javascript"><code>// either the spec / role arrays are passed directly, or a string
+// with the path towards a json file containing either of them, or
+// a promise which is resolved with either of them.
+spet.auth.registerComponent(this.getId(), oSpecification, aRoles);</code></pre></li>
+<li>All views which are loaded after this point will be automatically processed by the library. If a view or model is built or instantiated in a different manor (e.g. imperative instantiation of a fragment - which should be avoided) then the <code>spet.auth.processControlTree</code> method may be used.</li>
+</ul>
+<h2>Best Practices</h2><p>You can do a number of things to ensure that you don't run into problems:</p>
+<ul>
+<li>Avoid imperative manipulation of properties that are changed by the library. For simple actions, changes are done only once during view preprocessing, so these changes might be irreversibly reverted by your controller code.</li>
+<li>Favor declarative bindings such that all the bindings and templates exist when the preprocessing is done.</li>
+<li>Favor declarative fragment instantiation (to avoid the point from above).</li>
+</ul>
+<h2>Links</h2><ul>
+<li>Sample: <a href="https://serban-petrescu.github.io/ui5-auth/sample/wrapper.html">wrapper.html</a>. For the sample, the authorization specification is located here: <a href="https://serban-petrescu.github.io/ui5-auth/sample/auth.json">auth.json</a>. The role list is derived from the checkboxes in the top of the page. Make sure to press the &quot;Refresh&quot; button after changing the checkboxes.</li>
+<li>JsDoc: <a href="https://serban-petrescu.github.io/ui5-auth/doc/index.html">index.html</a></li>
+<li>Test suite: <a href="https://serban-petrescu.github.io/ui5-auth/test/spet/auth/index.qunit.html?coverage">index.qunit.html?coverage</a>.</li>
+<li>Latest build: <a href="https://serban-petrescu.github.io/ui5-auth/latest.zip">latest.zip</a>.</li>
+<li>Presentation: <a href="https://serban-petrescu.github.io/ui5-auth/docs/presentation/index.html">index.html</a>.</li>
+</ul>
+<p>For a specific version of this library, check the <a href="https://github.com/serban-petrescu/ui5-auth/releases">releases section</a>.</p>
+<p>You can also cosume this library through bower: <code>bower install spet-ui5-auth</code>.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Copyright � 2017 Serban Petrescu
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	
+		on Th.09.yyyy
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
