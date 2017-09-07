@@ -35,7 +35,7 @@
 				<section>
 					<h3>Contents</h3>
 					<ul>
-						<li>The <strong>"</strong>Problem<strong>"</strong></li>
+						<li>The <strong>"</strong>problem<strong>"</strong></li>
 					    <li>A naive way</li>
 					    <li>A better way</li>
 					    <li>The library</li>
@@ -73,7 +73,7 @@
 							Simply treat the roles as any other type of data.
 						</p>
 						<p>
-							Read it from the backend from a REST service.
+							Read it from the backend (e.g. via a REST service).
 						</p>
 						<p>
 							Store it in a JSON or XML model.
@@ -85,10 +85,32 @@
 					<section>
 						<h3>Disadvantages</h3>
 						<ul>
-							<li>Front- and backend are coupled through the roles</li>
-							<li>All the views are polluted with the roles</li>
-							<li>Hard for developers to see what is affected by each role</li>
+							<li>Frontend and backend are coupled through the roles.</li>
+							<li>All the views are polluted with the roles.</li>
+							<li>Hard for developers to see what is affected by each role.</li>
 						</ul>
+					</section>
+					<section>
+						<h3>An example from SAP</h3>
+						<p>
+							We'll shortly look into an example from SAP: the SAP HANA XS Admin user interface.
+						</p>
+						<p>
+							In a nutshell, it uses this exact principle: a REST API for getting the roles, 
+							a JSON model for storing them and bindings to this model for adapting the UI.
+						</p>
+					</section>
+					<section>
+						<p>
+							This is what the REST API produces (and what is stored in the model):
+						</p>
+						<img src="assets/xs-admin-service.PNG" />
+					</section>
+					<section>
+						<p>
+							And this is how they use it inside views:
+						</p>
+						<img src="assets/xs-admin-view.PNG" />
 					</section>
 				</section>
 				<section>
@@ -101,7 +123,7 @@
 							The UI should have its own roles. 
 						</p>
 						<p>
-							It should only work with its own roles and it should not "know" any other roles.
+							It should only work with its own roles and it should not "know" of any other roles.
 						</p>
 					</section>
 					<section>
@@ -129,9 +151,9 @@
 					<section>
 						<h3>Advantages</h3>
 						<ul>
-							<li>Front- and backend are decoupled</li>
-							<li>A lot simpler to change the roles afterwards</li>
-							<li>More transparent to developers</li>
+							<li>Frontend and backend are decoupled.</li>
+							<li>It is a lot simpler to change the roles afterwards.</li>
+							<li>More transparent to developers.</li>
 						</ul>
 					</section>
 				</section>
